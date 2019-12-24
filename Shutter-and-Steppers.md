@@ -103,11 +103,14 @@ D8|15|Counter2|STP
 ## Wiring Diagrams  
 ### One Shutter
 ![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v411.jpg ":size=200px")
-![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v412.jpg ":size=200px")
+![412](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v412.jpg ":size=200px")
+![414](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v414.jpg ":size=200px")
+![416](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v416.jpg ":size=200px")
 
 ### 2 Shutters
-![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v421.jpg ":size=200px")
-![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v422.jpg ":size=200px")
+![421](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v421.jpg ":size=200px")
+![422](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v422.jpg ":size=200px")
+![424](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v424.jpg ":size=200px")
 
 ## Bill of Materials
 - ESP8266 Boards:  
@@ -126,7 +129,7 @@ D8|15|Counter2|STP
 - Stepper Motor Control Development Boards:  
   - [x1](https://aliexpress.com/item/32908836265.html)  
   - [x2](https://aliexpress.com/item/32870732179.html)  
-- [DC-DC Step Down Power Supply Module]
+- DC-DC Step Down Power Supply Module:  
   - [MP1584EN](https://www.aliexpress.com/item/33038302152.html)  
   - [LM2596](https://www.aliexpress.com/item/32719726240.html)  
   - [XL4015](https://www.aliexpress.com/item/1859072209.html)  
@@ -135,12 +138,6 @@ D8|15|Counter2|STP
   - [DC 12V 4A](https://www.aliexpress.com/item/32854269135.html) 
   - [DC 24v 4A](https://www.aliexpress.com/item/32854269135.html)  
 -  Aluminum Capacitors:  
-   - [35V 100UF](https://www.aliexpress.com/item/32814611460.html)  
-   - [35V 10UF](https://www.aliexpress.com/item/32887486570.html)  
-- [NEMA 17 Steppr Motor Bracker]
-   - [1](https://www.aliexpress.com/item/32969153656.html)  
-   - [2](https://www.aliexpress.com/item/4000056386209.html)  
-- [NEMA 17 Steppr Motor Accessories]
-   - [Cable for Stepper Motor HX2.54](https://www.aliexpress.com/item/32888208445.html)  
-   - [Motor parallel module 1 to 2](https://www.aliexpress.com/item/32908696009.html)  
+  - [35V 100UF](https://www.aliexpress.com/item/32814611460.html)  
+  - [35V 10UF](https://www.aliexpress.com/item/32887486570.html)  
 
