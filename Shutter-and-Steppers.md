@@ -113,9 +113,12 @@ D8|15|Counter2|STP
 - ESP8266 Boards:  
   - [Wemos D1 mini](https://www.aliexpress.com/item/32529101036.html)  
   - [NodeMCU](https://www.aliexpress.com/item/32521100830.html)  
+  - [ESP-01S](https://www.aliexpress.com/item/32973088687.html)  
 - Stepper motors (NEMA 17):  
   - [Standard](https://www.aliexpress.com/item/32572890101.html)  
   - [5:1 Planetary Gearbox](https://www.aliexpress.com/item/32586860419.html)  
+- Stepper motors (28BYJ-48):  
+  - [Standard](https://www.aliexpress.com/item/32849028097.html)  
 - Stepper Drivers:  
   - [A4988](https://www.aliexpress.com/item/1609523735.html)  
   - [DRV8825](https://www.aliexpress.com/item/1609523735.html)  
@@ -123,13 +126,21 @@ D8|15|Counter2|STP
 - Stepper Motor Control Development Boards:  
   - [x1](https://aliexpress.com/item/32908836265.html)  
   - [x2](https://aliexpress.com/item/32870732179.html)  
-- [DC-DC Step Down Power Supply Module](https://www.aliexpress.com/item/32546853828.html)  
+- [DC-DC Step Down Power Supply Module]
+  - [MP1584EN](https://www.aliexpress.com/item/33038302152.html)  
+  - [LM2596](https://www.aliexpress.com/item/32719726240.html)  
+  - [XL4015](https://www.aliexpress.com/item/1859072209.html)  
 - Power Supplies (AC-DC):  
-  - [DC 12V 2A](https://www.aliexpress.com/item/32856511014.html)  
   - [DC 12V 2.5A](https://www.aliexpress.com/item/32588476889.html)  
-  - [DC 12V 4A](https://www.aliexpress.com/item/32994556151.html)  
+  - [DC 12V 4A](https://www.aliexpress.com/item/32854269135.html) 
   - [DC 24v 4A](https://www.aliexpress.com/item/32854269135.html)  
 -  Aluminum Capacitors:  
    - [35V 100UF](https://www.aliexpress.com/item/32814611460.html)  
    - [35V 10UF](https://www.aliexpress.com/item/32887486570.html)  
-- [Motor Testing PWM Signal Generator](https://www.aliexpress.com/item/32856654440.html)  
+- [NEMA 17 Steppr Motor Bracker]
+   - [1](https://www.aliexpress.com/item/32969153656.html)  
+   - [2](https://www.aliexpress.com/item/4000056386209.html)  
+- [NEMA 17 Steppr Motor Accessories]
+   - [Cable for Stepper Motor HX2.54](https://www.aliexpress.com/item/32888208445.html)  
+   - [Motor parallel module 1 to 2](https://www.aliexpress.com/item/32908696009.html)  
+
