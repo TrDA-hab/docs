@@ -1,95 +1,135 @@
-## Description of the settings step by step, to configure Shutter and the Stepper motor.    
+!> **This feature is not included in precompiled binaries.**     
+To use it you must [compile your build](Compile-your-build.md). Add the following to `user_config_override.h`:
+```
+#ifndef USE_SHUTTER
+#define USE_SHUTTER           // Add Shutter support (+6k code)
+#endif
+```
 
-1.  To use it you must [compile your build](Compile-your-build.md).  
-2.  Full description of working with Shutteris available at [Blinds and Shutters](Blinds-and-Shutters.md).  
-3.  Complete list of commands is available at [Blinds, Shutters and Roller Shades Commands](Commands.md#blinds-shutters-and-roller-shades).  
-4.  For connnections Stepper motor ans Stepper drivers use [Wiring diagrams](#wiring-diagrams).  
-5.  For configure your stepper drivers use tutorials: [A4988](https://lastminuteengineers.com/a4988-stepper-motor-driver-arduino-tutorial/) or [DRV8825](https://lastminuteengineers.com/drv8825-stepper-motor-driver-arduino-tutorial/) or [TMC2208](https://wiki.fysetc.com/TMC2208/).  
-6.  For modifying a 28BYJ-48 12V stepper motor from unipolar to bipolar use tutorial: [28BYJ-48](https://coeleveld.com/wp-content/uploads/2016/10/Modifying-a-28BYJ-48-step-motor-from-unipolar-to-bipolar.pdf).  
-7. To create a prototype you can use Stepper Motor Control Development Boards: [x1](https://aliexpress.com/item/32908836265.html) or [x2](https://aliexpress.com/item/32870732179.html).  
+Stepper motors can be used to operate shutters and blinds. The configuration is very similar to the  Circuit Safe (Shuttermode 1) configuration. To operate a stepper motor requires driver module such as the A4988 and uses EN (enable), DIR (direction), STP (Stepper) for controls. If everything is defined correctly the shuttermode 3 will be reported at boot time.
 
+Tasmota supports a maximum of four shutters with one stepper motor per shutter. Each stepper connected to a Tasmota device must use the **same** stepper driver and motor. **You cannot move more than one shutter _concurrently_.**  
 
-***NOTE 0:***  
-Important limitations.
-- you can use **only bipolar** stepper motors.  
-- you must use the **same combination** of stepper drivers and stepper motors.
-- a `shutteropenduration<x>` **must be same** as `shuttercloseduration<x>`.  
-- you must **definitely configure** your stepper drivers. 
-- connection of the COUNTER **is mandatory**, or the ESP82xx device will always random freeze.  
+- Full description of [Blinds and Shutters](Blinds-and-Shutters.md)  
+- Complete list of [Blinds, Shutters and Roller Shades Commands](Commands.md#blinds-shutters-and-roller-shades)  
+- Stepper motor and Stepper drivers [wiring diagrams](#wiring-diagrams)  
+- Stepper drivers configuration tutorials:  
+  - [A4988](https://lastminuteengineers.com/a4988-stepper-motor-driver-arduino-tutorial/)
+  - [DRV8825](https://lastminuteengineers.com/drv8825-stepper-motor-driver-arduino-tutorial/)
+  - [TMC2208](https://wiki.fysetc.com/TMC2208/)  
+- Modifying a 28BYJ-48 12V stepper motor from unipolar to bipolar [tutorial](https://coeleveld.com/wp-content/uploads/2016/10/Modifying-a-28BYJ-48-step-motor-from-unipolar-to-bipolar.pdf)  
+- [Bill of Materials](#Bill-of-materials)  
 
-***NOTE 1:***  
- if you use 1 stepper motor cofiguration.  
- - if you use only one stepper motor, you must step-by-step execute the commands for SHUTTER1 only.  
- 
- ***NOTE 2:***  
- if you use 2 or more stepper motor cofiguration.  
- - you must step by step execute the commands first for SHUTTER1, and only then for SHUTTER2.  
- - at one moment in time, only one stepping motor should work.  
- - you can use only one speed value for all stepper motors.  
- - a maximum of four shutters per device are supported (1 shutters = 1 stepper motor). 
- - a maximum configuration may contain four stepper motors (4 shutters = 4 stepper motor).  
+## Example configuration  
+`EN` and `DIR` are on `Relay1i` and `Relay2` respectively. Please be aware to use the **inverse** relay for the enable signal.  
 
-## SHUTTER1.
-Example configuration:  
- - D1: Relay1i  = EN  
- - D2: Relay2   = DIR  
- - D3: PWM1     = STP  
- - D4: COUNTER1 = connected to D3/PWM1   
+The `STP` signal is assigned as a `PWM<x>` component where `<x>` matches the number of the shutter (e.g., `PWM1` for `Shutter1`). The shutter feature adjusts the PWM frequency to operate the motor for proper shutter operation. The stepper motor frequency setting is a global setting all PWM components on the device. This means that all shutters on the device will operate at the same speed. Therefore no PWM devices other than shutters can be connected to the same Tasmota device.  
 
-**a) Enable SHUTTER support**  
- `SetOption80 1`   // this is a global variable for all Shutters 
+The frequency of the PWM can be changed from 1000Hz to any value up to 10,000Hz. The command `ShutterFrequency` globally changes this. Be aware that most 12V operated motors cannot work faster than 2,000Hz. 5,000Hz.10,000Hz is possible by increasing the supplied voltage to 24V and use `ShutterMotorDelay` to allow a slow speed up/speed down. The maximum voltage of the A4988 is 36V.
 
-**b) Setting for work ShutterMode 1**  
-  `Backlog PulseTime1 0; PulseTime2 0`   // for relay Relay1i and Relay2  
-  `Interlock OFF`                        // this is a global variable for all Relays  
+Finally a GPIO **must** be assigned as `Counter1`. This counter is used to keep track of the steps and send the stepper to the correct position. The `Counter1` GPIO must be connected to the `PWM1` GPIO. Otherwise the stepper and your shutter will run continually or freeze up randomly.
 
-**c) Restart ESP**  
-  `restart 1`
+Only **bipolar** stepper motors may be used (see above).  
 
-**d) Test work ShutterMode 1**  
-  `ShutterRelay1 1`   // for relay Relay1i and Relay2
+You must properly configure the stepper motor driver (see above).
 
-**e) Test work STEPPER1**  
-  `ShutterOpen1`   
-  `ShutterStop1`      // to stop the STEPPER1  
-  `ShutterClose1`  
-  `ShutterInvert1`    // to change the direction of rotation of the STEPPER1  
+`ShutterOpenDuration` and `ShutterCloseDuration` can be different. e.g. for a slower close than open.
 
-**f) Setting the speed of the stepper motor (optional settings)**  
-  `ShutterFrequency 1500`  // this is a global variable for all steppers (1000rpm by default)
+You can define a soft start/stop by defining a `ShutterMotorDelay`. This causes the driver to ramp the speed up and down during the defined duration. The change of the `ShutterMotorDelay` does NOT change the WAY the shutter makes. This is very convinent to trim the accelerate and decelerate rate without changeing the way.
 
-**g) Next steps, perform the calibration as written on the [Wiki](Blinds-and-Shutters.md#calibration).**    
+Wemos Pin|GPIO|Component|Stepper Signal
+:-:|:-:|:-:|:-:
+D1|5|Relay1i|EN
+D2|4|Relay2|DIR
+D3|0|PWM1|STP
+D4|2|Counter1|STP
 
+**a) Set ShutterMode 3**  
+   `Backlog PulseTime1 0; PulseTime2 0`   // for relay Relay1i and Relay2  
+   `Interlock OFF`                        // this is a global variable for all Relays or at least the RELAYS NOT in the Interlock group
+   PWM1 and COUNTER1 defined
 
-## SHUTTER2.
-Example configuration:  
- - D6: Relay3i  = EN  
- - D6: Relay4   = DIR  
- - D7: PWM2     = STP  
- - D8: COUNTER2 = connected to D7/PWM2   
+**b) Enable Shutters**  
+   `SetOption80 1`   // this is a global variable for all Shutters  
 
-**a) Setting for work ShutterMode 1**  
+**c) Configure Shutter 1 and test ShutterMode 1 is working**  
+   `ShutterRelay1 1`   // for relay Relay1i and Relay2
+
+**d) Set the stepper motor speed (optional setting)**  
+   `ShutterFrequency 1500`  // this is a global variable for all steppers (1000rpm by default)
+
+**e) Set at least a small ramp-up/ramp down period 1.0 second (optional)**  
+   `ShutterMotorDelay1 1.0`  // Stepper do not like infinite momentum. Ramp up/down speed allow much higher frequencies.
+
+**f) Restart Tasmota**  
+   `Restart 1`
+
+**g) Test the shutter**  
+   `ShutterOpen1`   
+   `ShutterStop1`      // to stop the STEPPER1  
+   `ShutterClose1`  
+   `ShutterInvert1`    // to change the direction of rotation of the STEPPER1  
+
+**h) Perform the [shutter calibration](Blinds-and-Shutters.md#calibration)**    
+
+## Configuration for additional shutters  
+You must first set up the first shutter and only then the next.  
+
+Wemos Pin|GPIO|Component|Stepper Signal
+:-:|:-:|:-:|:-:
+D5|14|Relay3i|EN
+D6|12|Relay4|DIR
+D7|13|PWM2|STP
+D8|15|Counter2|STP
+
+**a) Set ShutterMode 3**  
   `Backlog PulseTime3 0; PulseTime4 0`   // for relay Relay3i and Relay4  
+  PWM2 and COUNTER2 defined
 
-**b) Restart ESP**  
-  `restart 1`
-
-**c) Enable ShutterRelay2 and test work ShutterMode 1**  
+**c) Configure Shutter 2 and test ShutterMode 1 is working**  
   `ShutterRelay2 3`   // for relay Relay3i and Relay4
 
-**d) Test work STEPPER2**  
+**b) Restart Tasmota**  
+  `Restart 1`
+
+**d) Test the shutter**  
   `ShutterOpen2`  
   `ShutterStop2`     // to stop the STEPPER2  
   `ShutterClose2`  
   `ShutterInvert2`   // to change the direction of rotation of the STEPPER2  
   
-**e) Next steps, perform the calibration as written on the [Wiki](Blinds-and-Shutters.md#calibration).**    
+**e) Perform the [shutter calibration](Blinds-and-Shutters.md#calibration)**    
 
 ## Wiring Diagrams  
-### SHUTTER1: (pic. v4.1.1 and v4.1.2)  
-![411](https://github.com/TrDA-hab/blinds/blob/master/images/A4988%20v411.jpg ":size=200px")
-![411](https://github.com/TrDA-hab/blinds/blob/master/images/A4988%20v412.jpg ":size=200px")
+### One Shutter
+![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v411.jpg ":size=200px")
+![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v412.jpg ":size=200px")
 
-### SHUTTER2: (pic. v4.2.1 and v4.2.2)  
-![411](https://github.com/TrDA-hab/blinds/blob/master/images/A4988%20v421.jpg ":size=200px")
-![411](https://github.com/TrDA-hab/blinds/blob/master/images/A4988%20v422.jpg ":size=200px")
+### 2 Shutters
+![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v421.jpg ":size=200px")
+![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v422.jpg ":size=200px")
+
+## Bill of Materials
+- ESP8266 Boards:  
+  - [Wemos D1 mini](https://www.aliexpress.com/item/32529101036.html)  
+  - [NodeMCU](https://www.aliexpress.com/item/32521100830.html)  
+- Stepper motors (NEMA 17):  
+  - [Standard](https://www.aliexpress.com/item/32572890101.html)  
+  - [5:1 Planetary Gearbox](https://www.aliexpress.com/item/32586860419.html)  
+- Stepper Drivers:  
+  - [A4988](https://www.aliexpress.com/item/1609523735.html)  
+  - [DRV8825](https://www.aliexpress.com/item/1609523735.html)  
+  - [TMC 2208](https://www.aliexpress.com/item/32851067375.html)  
+- Stepper Motor Control Development Boards:  
+  - [x1](https://aliexpress.com/item/32908836265.html)  
+  - [x2](https://aliexpress.com/item/32870732179.html)  
+- [DC-DC Step Down Power Supply Module](https://www.aliexpress.com/item/32546853828.html)  
+- Power Supplies (AC-DC):  
+  - [DC 12V 2A](https://www.aliexpress.com/item/32856511014.html)  
+  - [DC 12V 2.5A](https://www.aliexpress.com/item/32588476889.html)  
+  - [DC 12V 4A](https://www.aliexpress.com/item/32994556151.html)  
+  - [DC 24v 4A](https://www.aliexpress.com/item/32854269135.html)  
+-  Aluminum Capacitors:  
+   - [35V 100UF](https://www.aliexpress.com/item/32814611460.html)  
+   - [35V 10UF](https://www.aliexpress.com/item/32887486570.html)  
+- [Motor Testing PWM Signal Generator](https://www.aliexpress.com/item/32856654440.html)  
