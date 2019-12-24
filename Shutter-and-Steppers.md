@@ -137,7 +137,7 @@ D8|15|Counter2|STP
   - [DC 12V 2.5A](https://www.aliexpress.com/item/32588476889.html)  
   - [DC 12V 4A](https://www.aliexpress.com/item/32854269135.html) 
   - [DC 24v 4A](https://www.aliexpress.com/item/32854269135.html)  
--  Aluminum Capacitors:  
+- Aluminum Capacitors:  
   - [35V 100UF](https://www.aliexpress.com/item/32814611460.html)  
   - [35V 10UF](https://www.aliexpress.com/item/32887486570.html)  
 - Motor Testing PWM Signal Generator:  
