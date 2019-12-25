@@ -102,11 +102,11 @@ D8|15|Counter2|STP
 **e) Perform the [shutter calibration](Blinds-and-Shutters.md#calibration)**    
 
 ## Wiring Diagrams description  
-- 412  
-- 414  
-- 416  
-- 422  
-- 424  
+- Diagram v412: universal setup. For example, the management of single curtains, blinds, shutters or pet feeders.  
+- Diagram v414: parallel setup is to run two parallel steppers motors from the same controller. For example, to control a large and heavy hanging screen for an LCD projector, or two curtains at once on one large window.
+- Diagram v416: minimum setup size. For example, for small curtains located in a limited space.
+- Diagram v422: parallel setup is to run two shutters and independent control of two stepper motors from one controller. For example, to control two independent curtains.  
+- Diagram v424: parallel setup is to run two shutters and independent control of two pairs of stepper motors from one controller. For example, to control four curtains on one very large window.
 
 ## Wiring Diagrams  
 ### One Shutter  
