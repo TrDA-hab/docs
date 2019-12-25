@@ -127,8 +127,8 @@ D8|15|Counter2|STP
   - [DRV8825](https://www.aliexpress.com/item/1609523735.html)  
   - [TMC 2208](https://www.aliexpress.com/item/32851067375.html)  
 - Stepper Motor Control Development Boards:  
-  - [x1](https://aliexpress.com/item/32908836265.html)  
-  - [x2](https://aliexpress.com/item/32870732179.html)  
+  - [x1 board](https://aliexpress.com/item/32908836265.html)  
+  - [x2 board](https://aliexpress.com/item/32870732179.html)  
 - DC-DC Step Down Power Supply Module:  
   - [MP1584EN](https://www.aliexpress.com/item/33038302152.html)  
   - [LM2596](https://www.aliexpress.com/item/32719726240.html)  
@@ -140,4 +140,6 @@ D8|15|Counter2|STP
 -  Aluminum Capacitors:  
   - [35V 100UF](https://www.aliexpress.com/item/32814611460.html)  
   - [35V 10UF](https://www.aliexpress.com/item/32887486570.html)  
-
+- Motor Testing PWM Signal Generator:  
+  - [1 type](https://www.aliexpress.com/item/32856654440.html)  
+  - [2 type](https://www.aliexpress.com/item/32818889845.html) 
