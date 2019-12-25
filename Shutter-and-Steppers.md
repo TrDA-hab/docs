@@ -12,6 +12,7 @@ Tasmota supports a maximum of four shutters with one stepper motor per shutter. 
 
 - Full description of [Blinds and Shutters](Blinds-and-Shutters.md)  
 - Complete list of [Blinds, Shutters and Roller Shades Commands](Commands.md#blinds-shutters-and-roller-shades)  
+- Stepper motor and Stepper drivers [Wiring Diagrams description](#Wiring-Diagrams-description)  
 - Stepper motor and Stepper drivers [wiring diagrams](#wiring-diagrams)  
 - Stepper drivers configuration tutorials:  
   - [A4988](https://lastminuteengineers.com/a4988-stepper-motor-driver-arduino-tutorial/)
@@ -100,19 +101,26 @@ D8|15|Counter2|STP
   
 **e) Perform the [shutter calibration](Blinds-and-Shutters.md#calibration)**    
 
+## Wiring Diagrams description  
+- 412  
+- 414  
+- 416  
+- 422  
+- 424  
+
 ## Wiring Diagrams  
-### One Shutter
+### One Shutter  
 ![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v411.jpg ":size=200px")
 ![412](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v412.jpg ":size=200px")
 ![414](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v414.jpg ":size=200px")
 ![416](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v416.jpg ":size=200px")
 
-### 2 Shutters
+### 2 Shutters  
 ![421](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v421.jpg ":size=200px")
 ![422](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v422.jpg ":size=200px")
 ![424](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v424.jpg ":size=200px")
 
-## Bill of Materials
+## Bill of Materials  
 - ESP8266 Boards:  
   - [Wemos D1 mini](https://www.aliexpress.com/item/32529101036.html)  
   - [NodeMCU](https://www.aliexpress.com/item/32521100830.html)  
