@@ -12,7 +12,7 @@ Tasmota supports a maximum of four shutters with one stepper motor per shutter. 
 
 - Full description of [Blinds and Shutters](Blinds-and-Shutters.md)  
 - Complete list of [Blinds, Shutters and Roller Shades Commands](Commands.md#blinds-shutters-and-roller-shades)  
-- Stepper motor and Stepper drivers [Wiring Diagrams description](#Wiring-Diagrams-description)  
+- Shutters and Stepper motors [wiring Diagrams description](#wiring-Diagrams-description)  
 - Stepper motor and Stepper drivers [wiring diagrams](#wiring-diagrams)  
 - Stepper drivers configuration tutorials:  
   - [A4988](https://lastminuteengineers.com/a4988-stepper-motor-driver-arduino-tutorial/)
