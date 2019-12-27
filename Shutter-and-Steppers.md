@@ -100,7 +100,6 @@ D8|15|Counter2|STP
   
 **e) Perform the [shutter calibration](Blinds-and-Shutters.md#calibration)**    
 
-
 ## Wiring Diagrams  
 ### One Shutter  
 ![411](https://raw.githubusercontent.com/TrDA-hab/blinds/master/images/A4988%20v411.jpg ":size=200px")
@@ -121,7 +120,7 @@ D8|15|Counter2|STP
 ## Bill of Materials  
 - ESP8266 Boards:  
   - [Wemos D1 mini](https://www.aliexpress.com/item/32529101036.html)  
-  - [NodeMCU](https://www.aliexpress.com/item/32521100830.html)  
+  - [NodeMCU](https://www.aliexpress.com/item/32266751149.html)  
   - [ESP-01S](https://www.aliexpress.com/item/32973088687.html)  
 - Stepper motors (NEMA 17):  
   - [Standard](https://www.aliexpress.com/item/32572890101.html)  
